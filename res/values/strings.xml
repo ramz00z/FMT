@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ForfaitMobileTracker</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="menu_title">Title</string>
+    <string name="help">help</string>
+    <string name="pref_seuil_summ">Seuil_Summ</string><string name="pref_seuil">Pourcentage auquel prévenir</string>
+    
+    <string name="pref_sync_summ">Sync_Summ</string>
+    <string name="pref_sync">Sync</string>
+    <string name="voicemail_provider">voicemail provider</string>
+    <string name="voicemail_settings">voicemail settings</string>
+    <string name="voicemail_ringtone_title">voicemail ringtone title</string>
+    <string name="voicemail">voicemail</string>
+
+</resources>
