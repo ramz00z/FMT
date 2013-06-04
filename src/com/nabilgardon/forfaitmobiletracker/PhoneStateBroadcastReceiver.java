@@ -26,6 +26,7 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver
 		{
 			Log.d("FMT", "Début d'un nouvel appel sortant");
 			callStarted = true;
+			
 		}
 		
 		if (!callStarted && mExtraState.equals(TelephonyManager.EXTRA_STATE_IDLE))
