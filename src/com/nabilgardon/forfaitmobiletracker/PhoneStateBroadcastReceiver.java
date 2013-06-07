@@ -2,6 +2,7 @@ package com.nabilgardon.forfaitmobiletracker;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver
 		if (!callStarted && mExtraState.equals(TelephonyManager.EXTRA_STATE_IDLE))
 		{
 			callStarted = false;
+			getLastCallInfos(context);
 		}
 
 		//Log.i("FMT", "Call State : "+intent.getStringExtra(TelephonyManager.EXTRA_STATE));
@@ -42,9 +44,10 @@ public class PhoneStateBroadcastReceiver extends BroadcastReceiver
 			Log.i("FMT", "OFFHOOK negook");
 	}
 	
-	private void getLastCallInfos()
+	private void getLastCallInfos(Context context)
 	{
-	    Intent serviceIntent = new Intent(null, TrackingPhoneService.class);
+	    Intent serviceIntent = new Intent(context, DatabaseService.class);
+	    context.startService(serviceIntent);
 	    
 	}
 }

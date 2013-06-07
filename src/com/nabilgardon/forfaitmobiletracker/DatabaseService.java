@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.util.Log;
-import android.widget.Toast;
 
 public class DatabaseService extends IntentService {
 
@@ -25,7 +24,7 @@ public class DatabaseService extends IntentService {
 		//if (arg0.getStringExtra("order").equals("check_last_call"))
 		//{
 		mContentResolver = getContentResolver();
-			Log.i("FMT", "Database service created");
+			Log.w("FMT", "Database service created");
 			readLastCall();
 		//}
 	}
@@ -35,37 +34,49 @@ public class DatabaseService extends IntentService {
 		Uri uri = android.provider.CallLog.Calls.CONTENT_URI;
 		String durationLabel = CallLog.Calls.DURATION,
 				numberLabel = CallLog.Calls.NUMBER,
-				typeLabel = Calls.TYPE;
-		String[] columnsList = {typeLabel, numberLabel, durationLabel};
+				typeLabel = Calls.TYPE,
+				dateLabel = Calls.DATE;
+		String[] columnsList = {typeLabel, numberLabel, durationLabel, dateLabel};
 		Cursor cursor = mContentResolver.query(
 				uri, 
 				columnsList, 
 				null, 
 				null, 
-				null);
+				dateLabel+" DESC LIMIT 2");
 		if (cursor == null) {
 		    // query failed, handle error.
 			Log.e("FMT", "Query failed");
 		} else {
 			int typeColumnNum = cursor.getColumnIndex(typeLabel);
-			int numberColumnNum = cursor.getColumnIndex(durationLabel);
+			int numberColumnNum = cursor.getColumnIndex(numberLabel);
 			int durationColumnNum = cursor.getColumnIndex(durationLabel);
+			int dateColumnNum = cursor.getColumnIndex(dateLabel);
 			int type, duration;
+			long date;
+			
+			cursor.moveToFirst();
 			String number = "";
 			do
 			{
-				Log.i("FMT", ""+cursor.getColumnName(0));
-				Log.i("FMT", ""+cursor.getColumnName(1));
-				Log.i("FMT", ""+cursor.getColumnName(2));
-
-				//type = cursor.getInt(typeColumnNum);
+				type = cursor.getInt(typeColumnNum);
 				number = cursor.getString(numberColumnNum);
 				duration = cursor.getInt(durationColumnNum);
+				date = cursor.getLong(dateColumnNum);
 				
-				Log.d("FMT", "Appel terminé. Numéro : " +number+ " of duration : " +duration);		
-
+				Log.d("FMT", "Appel terminé. Numéro : " +number+ " of duration : " +duration +" Date = " +date);
+				
+				int index = 3;
+				
+				if (number.charAt(0) != '+')
+					index -= 2;
+				switch (number.charAt(index))
+				{
+				case '6': Log.i("FMT", "06 (portable) enregistrée"); break;
+				case '7': Log.i("FMT", "07 (portable) enregistrée"); break;
+				case '9': Log.i("FMT", "09 (fixe/box) enregistrée"); break;
+				}
 			} while (cursor.moveToNext());
-			
+			cursor.close();
 		}
 	}
 }
