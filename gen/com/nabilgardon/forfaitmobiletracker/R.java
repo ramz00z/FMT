@@ -26,15 +26,22 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_stat_notify_running=0x7f020001;
     }
     public static final class id {
+        public static final int add=0x7f080004;
+        public static final int delete=0x7f080005;
         public static final int dummy_button=0x7f080002;
         public static final int fullscreen_content_controls=0x7f080001;
+        public static final int group=0x7f080003;
         public static final int list=0x7f080000;
     }
     public static final class layout {
         public static final int activity_forfait_mobile_tracker=0x7f030000;
+        public static final int activity_test_database=0x7f030001;
     }
     public static final class string {
+        public static final int add_new=0x7f06000e;
         public static final int app_name=0x7f060000;
+        public static final int app_settings_name=0x7f06000f;
+        public static final int delete_first=0x7f06000d;
         public static final int dummy_button=0x7f060001;
         public static final int dummy_content=0x7f060002;
         public static final int help=0x7f060004;

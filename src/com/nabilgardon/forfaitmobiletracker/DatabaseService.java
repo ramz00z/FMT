@@ -9,6 +9,12 @@ import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.util.Log;
 
+/**
+ * Database Queries Service Class.
+ * Details to be disclosed later
+ * @author Nabil Gardon
+ *
+ */
 public class DatabaseService extends IntentService {
 
 	ContentResolver mContentResolver;
@@ -20,7 +26,6 @@ public class DatabaseService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent arg0) {
-		// TODO Auto-generated method stub
 		//if (arg0.getStringExtra("order").equals("check_last_call"))
 		//{
 		mContentResolver = getContentResolver();
@@ -29,7 +34,7 @@ public class DatabaseService extends IntentService {
 		//}
 	}
 
-	private void readLastCall()
+	private synchronized void readLastCall()
 	{
 		Uri uri = android.provider.CallLog.Calls.CONTENT_URI;
 		String durationLabel = CallLog.Calls.DURATION,
