@@ -14,5 +14,7 @@
     <string name="voicemail_settings">voicemail settings</string>
     <string name="voicemail_ringtone_title">voicemail ringtone title</string>
     <string name="voicemail">voicemail</string>
-
+    <string name="delete_first">Delete First</string>
+	<string name="add_new">Add New</string>
+	<string name="app_settings_name">ForfaitTrackerSettings</string>
 </resources>

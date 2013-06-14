@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.nabilgardon.forfaitmobiletracker.ForfaitMobileTracker"
+            android:name="com.nabilgardon.forfaitmobiletracker.ForfaitMobileTrackerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -31,13 +31,14 @@
                 android:name=".DatabaseService"
                 android:exported="false"
 		/>
-        <receiver class=".PhoneStateBroadcastReceiver"
+        <receiver class=".PhoneStateBroadcastReceiver" 
             android:name=".PhoneStateBroadcastReceiver">
             <intent-filter android:priority="100">
                 <action android:name="android.intent.action.PHONE_STATE"/>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
             </intent-filter>
         </receiver>
+        <activity android:label="@string/app_settings_name" android:theme="@style/FullscreenTheme" android:launchMode="singleInstance" android:name="ForfaitMobileTrackerPreferenceActivity" android:parentActivityName="@string/app_name"></activity>
     </application>
 
 </manifest>
